@@ -45,8 +45,8 @@ NeoConsoleTranscript >> initializeStream [
 	Overwrtitten to use #fileNameWithDate"
 	
 	stream := self isStdout 
-		ifTrue: [ FileStream stdout ]
-		ifFalse: [ FileStream fileNamed: self fileNameWithDate ].
+		ifTrue: [ (ZnCharacterWriteStream on: Stdio stdout) ]
+		ifFalse: [ (File named: self fileNameWithDate) writeStream ].
 	stream wantsLineEndConversion: true.
 	self isStdout
 		ifTrue: [ stream converter "Force lazy initialization of converter" ] 
