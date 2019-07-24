@@ -47,7 +47,6 @@ NeoConsoleTranscript >> initializeStream [
 	stream := self isStdout 
 		ifTrue: [ (ZnCharacterWriteStream on: Stdio stdout) ]
 		ifFalse: [ (File named: self fileNameWithDate) writeStream ].
-	stream wantsLineEndConversion: true.
 	self isStdout
 		ifTrue: [ stream converter "Force lazy initialization of converter" ] 
 		ifFalse: [ stream setToEnd ].
